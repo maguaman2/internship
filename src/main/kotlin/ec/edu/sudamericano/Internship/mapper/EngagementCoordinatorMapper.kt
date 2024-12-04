@@ -4,8 +4,8 @@ import ec.edu.sudamericano.Internship.dto.EngagementCoordinatorDto
 import ec.edu.sudamericano.Internship.entity.EngagementCoordinator
 
 object EngagementCoordinatorMapper {
-    fun toEntity(dto: EngagementCoordinatorDto): EngagementCoordinator {
-        val engagementCoordinator = EngagementCoordinatorMapper()
+    fun toEntity(engagementCoordinatorDto: EngagementCoordinatorDto): EngagementCoordinator {
+        val engagementCoordinator = EngagementCoordinator()
         engagementCoordinator.fullName = engagementCoordinatorDto.fullName
         engagementCoordinator.email = engagementCoordinatorDto.email
         return engagementCoordinator

@@ -1,6 +1,8 @@
 package ec.edu.sudamericano.Internship.service
 
+import ec.edu.sudamericano.Internship.dto.EngagementCoordinatorDto
 import ec.edu.sudamericano.Internship.entity.EngagementCoordinator
+import ec.edu.sudamericano.Internship.mapper.EngagementCoordinatorMapper
 import ec.edu.sudamericano.Internship.repository.EngagementCoordinatorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
