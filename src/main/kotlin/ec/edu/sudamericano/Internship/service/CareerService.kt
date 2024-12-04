@@ -1,37 +1,42 @@
 package ec.edu.sudamericano.Internship.service
 import ec.edu.sudamericano.Internship.dto.CareerDTO
+import ec.edu.sudamericano.Internship.entity.Career
 import ec.edu.sudamericano.Internship.mapper.CareerMapper
 import ec.edu.sudamericano.Internship.repository.CareerRepository
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional
-class CareerService(private val careerRepository: CareerRepository, private val careerMapper: CareerMapper) {
+class CareerService(private val careerRepository: CareerRepository) {
 
     fun createCareer(careerDTO: CareerDTO): CareerDTO {
-        val career = careerMapper.toEntity(careerDTO)
-        val savedCareer = careerRepository.save(career)
-        return careerMapper.toDTO(savedCareer)
+        val careerEntity = CareerMapper.toEntity(careerDTO)
+        val savedCareer = careerRepository.save(careerEntity)
+        return CareerMapper.toDTO(savedCareer)
     }
 
     fun getCareer(id: Long): CareerDTO {
         val career = careerRepository.findById(id).orElseThrow { RuntimeException("Career not found") }
-        return careerMapper.toDTO(career)
+        return CareerMapper.toDTO(career)
     }
 
     fun getAllCareers(): List<CareerDTO> {
-        return careerRepository.findAll().map { careerMapper.toDTO(it) }
+        return careerRepository.findAll().map { CareerMapper.toDTO(it) }
     }
 
     fun updateCareer(id: Long, careerDTO: CareerDTO): CareerDTO {
-        val career = careerRepository.findById(id).orElseThrow { RuntimeException("Career not found") }
-        val updatedCareer = career.copy(fullName = careerDTO.fullName, coordinator = Coordinator(careerDTO.coordinatorId))
+        val existingCareer = careerRepository.findById(id).orElseThrow { RuntimeException("Career not found") }
+        val updatedCareer = existingCareer.copy(
+            fullName = careerDTO.fullName,
+            coordinatorId = careerDTO.coordinatorId
+        )
         val savedCareer = careerRepository.save(updatedCareer)
-        return careerMapper.toDTO(savedCareer)
+        return CareerMapper.toDTO(savedCareer)
     }
 
     fun deleteCareer(id: Long) {
+        if (!careerRepository.existsById(id)) {
+            throw RuntimeException("Career not found")
+        }
         careerRepository.deleteById(id)
     }
 }

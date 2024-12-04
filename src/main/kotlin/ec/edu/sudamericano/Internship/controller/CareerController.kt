@@ -21,11 +21,7 @@ class CareerController(private val careerService: CareerService) {
         return ResponseEntity.ok(CareerResponse(true, "Career retrieved successfully", careerDTO))
     }
 
-    @GetMapping
-    fun getAllCareers(): ResponseEntity<CareerResponse> {
-        val careers = careerService.getAllCareers()  // Devolver la lista de CareerDTO
-        return ResponseEntity.ok(CareerResponse(true, "Careers retrieved successfully", careers))  // Usar la lista de carreras
-    }
+
 
     @PutMapping("/{id}")
     fun updateCareer(@PathVariable id: Long, @RequestBody careerDTO: CareerDTO): ResponseEntity<CareerResponse> {
