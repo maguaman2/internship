@@ -30,14 +30,13 @@ class EngagementCoordinatorService {
         val updateEngagementCoordinator = EngagementCoordinatorMapper.toEntity(engagementCoordinatorDto).apply {
             this.id = existingEngagementCoordinator.id
         }
-        return engagementCoordinatorRepository.save(updateGuest) // Guarda el huésped actualizado en la base de datos
+        return engagementCoordinatorRepository.save(updateEngagementCoordinator)
     }
 
-    fun deleteGuest(id: Long){
-        // Verifica si el huésped existe antes de intentar eliminarlo
-        if (!guestRepository.existsById(id)){
-            throw RuntimeException("Guest not found with id: $id")
+    fun deleteEngagementCoordinator(id: Long){
+        if (!engagementCoordinatorRepository.existsById(id)){
+            throw RuntimeException("EngagementCoordinator not found with id: $id")
         }
-        guestRepository.deleteById(id) // Elimina el huésped de la base de datos
+        engagementCoordinatorRepository.deleteById(id)
     }
 }
