@@ -5,10 +5,12 @@ import ec.edu.sudamericano.Internship.entity.Company
 
 object CompanyMapper {
     fun toEntity(companyDto: CompanyDto): Company {
-        return Company().apply {
             val company = Company()
             company.company_name = companyDto.companyName
             company.address = companyDto.address
+            return company
+        }
+    }
 
             /*company.lat = companyDto.lat
             company.lon = companyDto.lon
@@ -16,5 +18,5 @@ object CompanyMapper {
             company.city = companyDto.city
             company.province = companyDto.province
             company.ceo_name = companyDto.ceoName*/
-        }
-    }
+
+
