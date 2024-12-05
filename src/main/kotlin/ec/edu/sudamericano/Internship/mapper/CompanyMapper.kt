@@ -9,11 +9,12 @@ object CompanyMapper {
             val company = Company()
             company.company_name = companyDto.companyName
             company.address = companyDto.address
-            company.lat = companyDto.lat
+
+            /*company.lat = companyDto.lat
             company.lon = companyDto.lon
             company.telephone = companyDto.telephone
             company.city = companyDto.city
             company.province = companyDto.province
-            company.ceo_name = companyDto.ceoName
+            company.ceo_name = companyDto.ceoName*/
         }
     }
