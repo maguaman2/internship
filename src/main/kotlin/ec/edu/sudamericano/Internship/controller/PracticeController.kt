@@ -5,29 +5,25 @@ import ec.edu.sudamericano.Internship.service.PracticeService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
-
 @RestController
-@RequestMapping("/controller")
+@RequestMapping("/practice")
 class PracticeController {
 
     @Autowired
-    private lateinit var practiceService: PracticeService
-
-    @Autowired
-    lateinit var practiceController: PracticeController
+    lateinit var practiceService: PracticeService
 
     @GetMapping
-    fun finAll(): List<Practice>{
-        return practiceService.finAll()
+    fun findAll(): List<Practice> {
+        return practiceService.findAll()
     }
 
     @GetMapping("/{id}")
-    fun finById(@PathVariable id: Long): Practice?{
-        return practiceService.finById(id)
+    fun findById(@PathVariable id: Long): Practice? {
+        return practiceService.findById(id)
     }
 
     @PostMapping
-    fun save (@RequestBody practice: Practice): Practice{
+    fun save(@RequestBody practice: Practice): Practice {
         return practiceService.save(practice)
     }
 }

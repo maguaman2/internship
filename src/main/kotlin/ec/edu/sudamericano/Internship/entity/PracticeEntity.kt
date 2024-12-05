@@ -12,13 +12,13 @@ class Practice{
     @Column(unique = false)
     var id: Long? = null
 
-    @Column(name = "assing_date")
-    var assingDate: LocalDateTime? = null
+    @Column(name = "assign_date")
+    var assignDate: LocalDateTime? = null
 
-    @Column(name = "start-date")
+    @Column(name = "start_date")
     var startDate: LocalDateTime? = null
 
-    @Column(name = "end-date")
+    @Column(name = "end_date")
     var endDate: LocalDateTime? = null
 
     @Column (nullable = false, length = 500)
