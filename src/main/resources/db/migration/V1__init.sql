@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS student
     career_id INT,
     FOREIGN KEY (career_id) REFERENCES career (id)
 );
---Ruben Villa
+--Rubén Villa
 --Usuario (01villa)
 --Table: PRACTICE
 CREATE TABLE IF NOT EXISTS practice
