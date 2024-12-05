@@ -5,5 +5,5 @@ import ec.edu.sudamericano.Internship.dto.CareerDTO
 data class CareerResponse(
     val success: Boolean,
     val message: String,
-    val data: CareerDTO? = null
+    val data: List<CareerDTO> // Cambiar de CareerDTO a List<CareerDTO>
 )
