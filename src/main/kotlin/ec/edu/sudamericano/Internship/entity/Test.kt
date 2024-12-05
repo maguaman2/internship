@@ -12,8 +12,8 @@ class Test {
 
     var description: String? = null
     var grade: Double? = null
-    var studentId: Int? = null
-    var academicTutorId: Int? = null
-    var companyTutorId: Int? = null
+   // var studentId: Int? = null
+    //var academicTutorId: Int? = null
+    //var companyTutorId: Int? = null
 
 }

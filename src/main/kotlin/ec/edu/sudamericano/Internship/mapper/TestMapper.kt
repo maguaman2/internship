@@ -11,9 +11,9 @@ object TestMapper {
         val test = Test()
         test.description = testDto.description
         test.grade = testDto.grade
-        test.studentId = testDto.studentId
-        test.academicTutorId = testDto.academicTutorId
-        test.companyTutorId
+        //test.studentId = testDto.studentId
+       // test.academicTutorId = testDto.academicTutorId
+        //test.companyTutorId = testDto.companyTutorId
         return test
     }
 
@@ -22,9 +22,9 @@ object TestMapper {
         testDto.id = test.id
         testDto.description = test.description
         testDto.grade = test.grade
-        testDto.studentId = test.studentId
-        testDto.academicTutorId = test.academicTutorId
-        testDto.companyTutorId = test.companyTutorId
+        //testDto.studentId = test.studentId
+       // testDto.academicTutorId = test.academicTutorId
+        //testDto.companyTutorId = test.companyTutorId
         return testDto
     }
 }
