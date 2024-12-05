@@ -2,13 +2,22 @@ package ec.edu.sudamericano.Internship.controller
 import ec.edu.sudamericano.Internship.dto.CareerDTO
 import ec.edu.sudamericano.Internship.response.CareerResponse
 import ec.edu.sudamericano.Internship.service.CareerService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/careers")
-class CareerController(private val careerService: CareerService) {
+class CareerController {
 
+    @Autowired
+    lateinit var careerService: CareerService
+
+    @GetMapping
+    fun getAllCareers(): ResponseEntity<CareerResponse> {
+        val careerDTO = careerService.findAll() // Llama al servicio para obtener todas las carreras
+        return ResponseEntity.ok(CareerResponse(true, "All careers retrieved successfully", careerDTO))
+    }
     @PostMapping
     fun createCareer(@RequestBody careerDTO: CareerDTO): ResponseEntity<CareerResponse> {
         val createdCareer = careerService.createCareer(careerDTO)

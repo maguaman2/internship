@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service
 @Service
 class CareerService(private val careerRepository: CareerRepository) {
 
+    fun findAll(): List<CareerDTO> {
+        val careers = careerRepository.findAll() // Supongamos que careerRepository tiene un método findAll()
+        return careers.map { CareerDTO(it.id, it.fullName, it.coordinatorId) } // Mapea la entidad a DTO
+    }
+
     fun createCareer(careerDTO: CareerDTO): CareerDTO {
         val careerEntity = CareerMapper.toEntity(careerDTO)
         val savedCareer = careerRepository.save(careerEntity)
