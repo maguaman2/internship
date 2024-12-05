@@ -25,7 +25,7 @@ class Activity {
 
     @Column(length = 500)
     var observations: String? = null
-
+/*
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     var studentId: Student? = null
@@ -38,5 +38,5 @@ class Activity {
     @JoinColumn(name = "practice_id", nullable = false)
     var practiceId: Practice? = null
 
-
+*/
 }

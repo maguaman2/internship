@@ -15,6 +15,7 @@ class ActivityDto {
     var resources: String? = null
     var observations: String? = null
 
+    /*
     @NotNull(message = "is required")
     var studentId: Int? = null
 
@@ -23,6 +24,8 @@ class ActivityDto {
 
     @NotNull(message = "is required")
     var practiceId: Int? = null
+
+     */
 
 
 }

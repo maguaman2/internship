@@ -24,6 +24,16 @@ class ActivityController {
 
     }
 
+    @GetMapping("/activities/byCreatedAt")
+    fun getActivitiesByCreatedAt(
+        @RequestParam createdAt: Long
+    ): List<Activity> {
+        return activityService.getActivitiesByCreatedAt(createdAt)
+    }
+
+
+
+/*
     @GetMapping
     fun getActivitiesByStudentAndDate(
         @RequestParam studentId: Long,
@@ -31,5 +41,7 @@ class ActivityController {
     ): List<Activity>{
         return activityService.getActivitiesByStudentAndDate(studentId, createdAt)
     }
+
+ */
 
 }

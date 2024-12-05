@@ -19,7 +19,17 @@ class activityService {
         return activityRepository.findAll()
     }
 
-    fun getActivitiesByStudentId(studentId: Long): List<Activity> {
+    fun getActivitiesByCreatedAt(createdAt: Long): List<Activity> {
+        return activityRepository.findByCreatedAt(createdAt)
+    }
+
+    fun save(activityDto: ActivityDto): Activity {
+        val activity = ActivityMapper.toEntity(activityDto)
+        return activityRepository.save(activity)
+    }
+}
+   /*
+   fun getActivitiesByStudentId(studentId: Long): List<Activity> {
         return activityRepository.findByStudentId(studentId)
     }
 
@@ -30,17 +40,12 @@ class activityService {
     fun getActivitiesByPracticeId(practiceId: Long): List<Activity> {
         return activityRepository.findByPracticeId(practiceId)
     }
+*/
 
-    fun getActivitiesByCreatedAt(createdAt: Long): List<Activity> {
-        return activityRepository.findByCreatedAt(createdAt)
-    }
-
+/*
     fun getActivitiesByStudentAndDate(studentId: Long, createdAt: LocalDateTime): List<Activity> {
         return activityRepository.findByStudentIdAndCreatedAt(studentId, createdAt)
     }
 
-    fun save(activityDto: ActivityDto): Activity {
-        val activity = ActivityMapper.toEntity(activityDto)
-        return activityRepository.save(activity)
-    }
-}
+ */
+
