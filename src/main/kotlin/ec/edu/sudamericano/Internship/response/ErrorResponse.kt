@@ -5,3 +5,4 @@ data class ErrorResponse(
     val message: String? = null,
     val code: Int? = null
 )
+
