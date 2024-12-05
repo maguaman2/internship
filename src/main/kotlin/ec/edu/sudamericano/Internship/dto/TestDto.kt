@@ -13,9 +13,9 @@ class TestDto {
 
     var grade: Double? = null
 
-    //var studentId: Int? = null
+    var studentId: Int? = null
 
-    //var academicTutorId: Int? = null
+    var academicTutorId: Int? = null
 
-    //var companyTutorId: Int? = null
+    var companyTutorId: Int? = null
 }
