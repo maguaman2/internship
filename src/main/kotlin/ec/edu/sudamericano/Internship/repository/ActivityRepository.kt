@@ -18,7 +18,7 @@ interface ActivityRepository: JpaRepository<Activity, Long> {
 
     fun findByCreatedAt(id: Long): List<Activity>
 
-    /*
+
     @Query("SELECT a FROM Activity a WHERE a.studentId.id = :studentId AND a.createdAt")
 
     fun findByStudentIdAndCreatedAt(
@@ -26,5 +26,5 @@ interface ActivityRepository: JpaRepository<Activity, Long> {
         @Param("createdAt") createdAt: LocalDateTime
     ) :List<Activity>
 
-     */
+
 }
