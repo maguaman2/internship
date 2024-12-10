@@ -19,27 +19,28 @@ class CompanyController {
         return companyService.getCompanies()
     }
 
-
     @GetMapping("/{id}")
     fun getCompanyId(@PathVariable id: Long): Company {
         return companyService.getCompanyById(id)
     }
-
 
     @PostMapping
     fun save(@RequestBody @Valid companyDto: CompanyDto): Company {
         return companyService.save(companyDto)
     }
 
-
     @PutMapping("/{id}")
     fun updateCompany(@PathVariable id: Long, @RequestBody @Valid companyDto: CompanyDto): Company {
         return companyService.updateCompany(id, companyDto)
     }
 
-
     @DeleteMapping("/{id}")
     fun deleteCompany(@PathVariable id: Long) {
         companyService.deleteCompany(id)
+    }
+
+    @GetMapping("/search")
+    fun searchCompanies(@RequestParam(name = "name", required = false) name: String?): List<Company> {
+        return companyService.searchCompaniesByName(name)
     }
 }
