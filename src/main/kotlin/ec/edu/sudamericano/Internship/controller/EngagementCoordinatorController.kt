@@ -19,31 +19,31 @@ class EngagementCoordinatorController {
     @GetMapping
     fun getEngagementCoordinators(): ResponseEntity<*> {
         val response = engagementCoordinatorService.getEngagementCoordinators()
-        return ResponseEntity(SuccessResponse(status = "success", data = response), HttpStatus.OK)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     @GetMapping("/{id}")
     fun getEngagementCoordinatorById(@PathVariable id: Long): ResponseEntity<*> {
             val response = engagementCoordinatorService.getEngagementCoordinatorById(id)
-            return ResponseEntity(SuccessResponse(status = "success", data = response), HttpStatus.OK)
+            return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     @PostMapping
     fun save(@RequestBody @Valid engagementCoordinatorDto: EngagementCoordinatorDto): ResponseEntity<*> {
             val response = engagementCoordinatorService.save(engagementCoordinatorDto)
-            return ResponseEntity(SuccessResponse(status = "success", data = response), HttpStatus.CREATED)
+            return ResponseEntity(SuccessResponse(data = response), HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
     fun updateEngagementCoordinator(@PathVariable id: Long, @RequestBody @Valid engagementCoordinatorDto: EngagementCoordinatorDto): ResponseEntity<*> {
             val response = engagementCoordinatorService.updateEngagementCoordinator(id, engagementCoordinatorDto)
-            return ResponseEntity(SuccessResponse(status = "success", data = response), HttpStatus.OK)
+            return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
 
     }
 
     @DeleteMapping("/{id}")
     fun deleteEngagementCoordinator(@PathVariable id: Long): ResponseEntity<*> {
         engagementCoordinatorService.deleteEngagementCoordinator(id)
-        return ResponseEntity(SuccessResponse(status = "success", data = "Engagement coordinator deleted"), HttpStatus.NO_CONTENT)
+        return ResponseEntity(SuccessResponse(data = "Engagement coordinator deleted"), HttpStatus.NO_CONTENT)
     }
 }
