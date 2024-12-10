@@ -39,8 +39,4 @@ class CompanyController {
         companyService.deleteCompany(id)
     }
 
-    @GetMapping("/search")
-    fun searchCompanies(@RequestParam(name = "name", required = false) name: String?): List<Company> {
-        return companyService.searchCompaniesByName(name)
-    }
 }
