@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS institute
 --Jonnathan Cadme
 --Usuario GitHub: Jonna007
 --Tabla: career coordinator
-CREATE TABLE IF NOT EXISTS coordinator
+CREATE TABLE IF NOT EXISTS :wq
+
 (
     id        SERIAL PRIMARY KEY,
     full_name VARCHAR(100)        NOT NULL,
