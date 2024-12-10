@@ -44,6 +44,6 @@ class EngagementCoordinatorController {
     @DeleteMapping("/{id}")
     fun deleteEngagementCoordinator(@PathVariable id: Long): ResponseEntity<*> {
         engagementCoordinatorService.deleteEngagementCoordinator(id)
-        return ResponseEntity(SuccessResponse(status = "success", data = "Coordinator deleted"), HttpStatus.NO_CONTENT)
+        return ResponseEntity(SuccessResponse(status = "success", data = "Engagement coordinator deleted"), HttpStatus.NO_CONTENT)
     }
 }
