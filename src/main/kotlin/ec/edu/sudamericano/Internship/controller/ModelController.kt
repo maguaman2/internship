@@ -6,5 +6,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/models")
 class ModelController {
+
     //inyectar el service
 }
