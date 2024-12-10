@@ -20,15 +20,9 @@ class ActivityController {
     lateinit var activityService: activityService
 
     @GetMapping
-    fun getActivities(): ResponseEntity<Any> {
-        return try {
-            val activities = activityService.getActivities()
-            ResponseEntity.ok(SuccessResponse(data = activities))
-        } catch (e: Exception) {
-            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                ErrorResponse(message = e.message, code = HttpStatus.INTERNAL_SERVER_ERROR.value())
-            )
-        }
+    fun getActivities(): ResponseEntity<*> {
+        val response = activityService.getActivities()
+        return ResponseEntity(SuccessResponse(data=response), HttpStatus.OK)
     }
 
     @PostMapping

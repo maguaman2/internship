@@ -1,7 +1,6 @@
 package ec.edu.sudamericano.Internship.controller
 
 import ec.edu.sudamericano.Internship.dto.CareerDTO
-import ec.edu.sudamericano.Internship.response.CareerResponse
 import ec.edu.sudamericano.Internship.service.CareerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
