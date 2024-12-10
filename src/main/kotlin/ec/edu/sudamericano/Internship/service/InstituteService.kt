@@ -1,36 +1,61 @@
 package ec.edu.sudamericano.Internship.service
 
 import ec.edu.sudamericano.Internship.dto.InstituteDto
-import ec.edu.sudamericano.Internship.entity.Institute
-import ec.edu.sudamericano.Internship.mapper.InstituteMapper
-import ec.edu.sudamericano.Internship.repository.InstituteRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
-
+import java.util.Optional
 
 @Service
 class InstituteService {
-    @Autowired
-    val instituteRepository: InstituteRepository? = null
+
+    val institutes = mutableListOf<InstituteDto>()
+
+    fun getAllInstitutes(): List<InstituteDto> {
+        return institutes
+    }
+
+    fun getInstituteById(id: Long): Optional<InstituteDto> {
+        return institutes.stream().filter { it.id == id }.findFirst()
+    }
+
+    fun createInstitute(instituteDto: InstituteDto): InstituteDto {
+        val newInstitute = instituteDto.copy(id = (institutes.size + 1).toLong())
+        institutes.add(newInstitute)
+        return newInstitute
+    }
+
+    fun updateInstitute(id: Long, updatedInstituteDto: InstituteDto): InstituteDto {
+        val index = institutes.indexOfFirst { it.id == id }
+        if (index != -1) {
+            val updatedInstitute = updatedInstituteDto.copy(id = id)
+            institutes[index] = updatedInstitute
+            return updatedInstitute
+        } else {
+            throw NoSuchElementException("Institute with ID $id not found")
+        }
+    }
+
+    fun deleteInstitute(id: Long) {
+        val index = institutes.indexOfFirst { it.id == id }
+        if (index != -1) {
+            institutes.removeAt(index)
+        } else {
+            throw NoSuchElementException("Institute with ID $id not found")
+        }
+    }
 
     fun findAll(): List<InstituteDto> {
-        return instituteRepository!!.findAll().stream()
-            .map<Any>(InstituteMapper.INSTANCE::instituteToInstituteDTO)
-            .toList()
+        return getAllInstitutes()
     }
 
     fun findById(id: Long): Optional<InstituteDto> {
-        return instituteRepository!!.findById(id)
-            .map<InstituteDto>(InstituteMapper.INSTANCE::instituteToInstituteDTO)
+        return getInstituteById(id)
     }
 
-    fun save(instituteDTO: InstituteDto?): InstituteDto? {
-        val institute: Institute? = InstituteMapper.INSTANCE.instituteDTOToInstitute(instituteDTO)
-        return InstituteMapper.INSTANCE.instituteToInstituteDTO(instituteRepository.save<S>(institute))
+    fun save(instituteDto: InstituteDto?): InstituteDto? {
+        return if (instituteDto != null) createInstitute(instituteDto) else null
     }
 
     fun delete(id: Long) {
-        instituteRepository!!.deleteById(id)
+        deleteInstitute(id)
     }
 }

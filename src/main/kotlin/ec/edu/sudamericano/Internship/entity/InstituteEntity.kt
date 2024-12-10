@@ -1,18 +1,20 @@
 package ec.edu.sudamericano.Internship.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 
 
 @Entity
 @Table(name = "institute")
 class Institute {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long? = null
-
-    @Column(name = "full_name", nullable = false)
-    val fullName: String? = null
-    val address: String? = null
-    val phone: String? = null
-    val city: String? = null
+    var fullName: String? = null
+    var address: String? = null
+    var phone: String? = null
+    var city: String? = null
 }
