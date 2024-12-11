@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("/api/institutes")
+@RequestMapping("/api/institute")
 class InstituteController {
     @Autowired
     val instituteService: InstituteService? = null
-
-    @get:GetMapping
-    val allInstitutes: List<InstituteDto>
-        get() = instituteService!!.findAll()
 
     @GetMapping("/{id}")
     fun getInstituteById(@PathVariable id: Long?): ResponseEntity<InstituteDto> {
