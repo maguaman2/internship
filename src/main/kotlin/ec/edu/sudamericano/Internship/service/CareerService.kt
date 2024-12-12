@@ -3,14 +3,17 @@ import ec.edu.sudamericano.Internship.dto.CareerDTO
 import ec.edu.sudamericano.Internship.entity.Career
 import ec.edu.sudamericano.Internship.mapper.CareerMapper
 import ec.edu.sudamericano.Internship.repository.CareerRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CareerService(private val careerRepository: CareerRepository) {
+class CareerService {
+    @Autowired
+    lateinit var careerRepository: CareerRepository
 
-    fun findAll(): List<CareerDTO> {
-        val careers = careerRepository.findAll() // Supongamos que careerRepository tiene un método findAll()
-        return careers.map { CareerDTO(it.id, it.fullName, it.coordinatorId) } // Mapea la entidad a DTO
+
+    fun getCareers(): List<Career> {
+        return careerRepository.findAll()
     }
 
     fun createCareer(careerDTO: CareerDTO): CareerDTO {
