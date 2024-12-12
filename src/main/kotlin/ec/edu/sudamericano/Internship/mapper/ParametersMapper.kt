@@ -2,29 +2,33 @@ package ec.edu.sudamericano.Internship.mapper
 
 import ec.edu.sudamericano.Internship.dto.ParametersDto
 import ec.edu.sudamericano.Internship.entity.Parameters
+import org.springframework.stereotype.Component
 
+@Component
 object ParametersMapper {
 
     // Convierte de ParametersDto a Parameters (entidad)
-    fun toEntity(dto: ParametersDto): Parameters {
-        return Parameters().apply {
-            id = dto.id
-            description = dto.description
-            category = dto.category
-            value = dto.value
-            // Aquí podrías manejar la relación con Permission si es necesario
-            // permission = somePermissionRepository.findById(dto.permissionId).orElse(null)
-        }
+    fun toEntity(parametersDto: ParametersDto): Parameters {
+        val parameters = Parameters()
+
+        parameters.description = parametersDto.description
+        parameters.category = parametersDto.category
+        parameters.value = parametersDto.value
+        parameters.permissionId = parametersDto.permissionId
+
+        return parameters
+
     }
 
-    // Convierte de Parameters (entidad) a ParametersDto
-    fun toDto(entity: Parameters): ParametersDto {
-        return ParametersDto(
-            id = entity.id,
-            description = entity.description,
-            category = entity.category,
-            value = entity.value,
-            permissionId = entity.permission?.id // Si tienes una relación con permission
-        )
+
+    fun toDto(parameters: Parameters): ParametersDto {
+        val parametersDto = ParametersDto()
+        parametersDto.id = parameters.id
+        parametersDto.description = parameters.description
+        parametersDto.category = parameters.category
+        parametersDto.permissionId = parameters.permissionId
+
+        return parametersDto
+
     }
 }
