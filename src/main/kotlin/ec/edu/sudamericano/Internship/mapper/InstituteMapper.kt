@@ -5,17 +5,7 @@ import ec.edu.sudamericano.Internship.entity.Institute
 import org.springframework.stereotype.Component
 
 @Component
-class InstituteMapper {
-
-    fun toDto(institute: Institute): InstituteDto {
-        return InstituteDto(
-            id = institute.id,
-            fullName = institute.fullName,
-            address = institute.address,
-            phone = institute.phone,
-            city = institute.city
-        )
-    }
+object InstituteMapper {
 
     fun toEntity(instituteDto: InstituteDto): Institute {
         val institute = Institute()
@@ -25,13 +15,5 @@ class InstituteMapper {
         institute.city = instituteDto.city
         return institute
     }
-
-
-    fun toDtoList(institutes: List<Institute>): List<InstituteDto> {
-        return institutes.map { toDto(it) }
-    }
-
-    fun toEntityList(instituteDtos: List<InstituteDto>): List<Institute> {
-        return instituteDtos.map { toEntity(it) }
-    }
 }
+

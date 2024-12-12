@@ -6,3 +6,4 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface InstituteRepository : JpaRepository<Institute?, Long?>
+
