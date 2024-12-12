@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
+data class SuccessResponse(val data: Any?)
+
 @RestController
 @RequestMapping("/api/coordinators")
 class CoordinatorController {
@@ -16,16 +18,16 @@ class CoordinatorController {
 
     // Endpoint GET: Obtener todos los coordinadores
     @GetMapping
-    fun findAll(): List<Coordinator> {
-        return coordinatorService.findAll()
+    fun findAll(): ResponseEntity<*> {
+        val response = coordinatorService.findAll()
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     // Endpoint GET: Obtener un coordinador por ID
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long): ResponseEntity<Coordinator> {
-        val coordinator = coordinatorService.findById(id)
-            ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        return ResponseEntity.ok(coordinator)
+    fun findById(@PathVariable id: Long): ResponseEntity<*> {
+        val response = coordinatorService.findById(id)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     // Endpoint PUT: Actualizar un coordinador
@@ -33,12 +35,22 @@ class CoordinatorController {
     fun update(
         @PathVariable id: Long,
         @RequestBody updatedCoordinator: Coordinator
-    ): ResponseEntity<Coordinator> {
-        return try {
-            val updated = coordinatorService.update(id, updatedCoordinator)
-            ResponseEntity.ok(updated)
-        } catch (e: IllegalArgumentException) {
-            ResponseEntity(HttpStatus.NOT_FOUND)
-        }
+    ): ResponseEntity<*> {
+        val response = coordinatorService.update(id, updatedCoordinator)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
+    }
+
+    // Endpoint POST: Crear un coordinador
+    @PostMapping
+    fun create(@RequestBody coordinator: Coordinator): ResponseEntity<*> {
+        val response = coordinatorService.create(coordinator)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.CREATED)
+    }
+
+    // Endpoint DELETE: Eliminar un coordinador
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long): ResponseEntity<*> {
+        coordinatorService.delete(id)
+        return ResponseEntity(SuccessResponse(data = null), HttpStatus.NO_CONTENT)
     }
 }
