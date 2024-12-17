@@ -1,4 +1,10 @@
 package ec.edu.sudamericano.Internship.repository
 
-class StudentRepository {
+import ec.edu.sudamericano.Internship.entity.Student
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface StudentRepository : JpaRepository<Student, Long> {
+
 }

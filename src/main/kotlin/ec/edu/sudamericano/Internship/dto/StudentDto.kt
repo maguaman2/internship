@@ -1,11 +1,25 @@
 package ec.edu.sudamericano.Internship.dto
 
 import jakarta.validation.constraints.NotBlank
-import org.jetbrains.annotations.NotNull
-
+import jakarta.validation.constraints.NotNull
 
 class StudentDto {
-    @NotNull(message = "Internship cannot be null")
-    @NotBlank(message = "Internship cannot be blank")
- var
+
+    var id : Long? = null
+
+    @NotNull(message = "Descrption is required")
+    @NotBlank(message = "Descrption is required")
+    var fullName : String = null.toString()
+    var nui : String? = null
+    var telephone : String? = null
+    var email : String? = null
+    var cycle : String? = null
+    var section : String? = null
+    var address : String? = null
+    var photoUrl : String? = null
+    var careerId : Long? = null
 }
+
+
+
+
