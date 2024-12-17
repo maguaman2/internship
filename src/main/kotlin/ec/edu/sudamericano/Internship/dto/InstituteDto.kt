@@ -1,9 +1,9 @@
 package ec.edu.sudamericano.Internship.dto
 
-data class InstituteDto(
-    val id: Long?,
-    val fullName: String?,
-    val address: String?,
-    val phone: String?,
-    val city: String?
-)
+class InstituteDto {
+    var id: Long? = null
+    var fullName: String? = null
+    var address: String? = null
+    var phone: String? = null
+    var city: String? = null
+}
