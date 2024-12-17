@@ -5,12 +5,10 @@ import ec.edu.sudamericano.Internship.entity.Activity
 import ec.edu.sudamericano.Internship.mapper.ActivityMapper
 import ec.edu.sudamericano.Internship.repository.ActivityRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
 
 @Service
-class activityService {
+class ActivityService {
 
     @Autowired
     lateinit var activityRepository: ActivityRepository

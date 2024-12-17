@@ -23,7 +23,6 @@ class TestService {
 
     fun findById(id: Long): TestDto {
         val test = testRepository.findById(id)
-            .orElseThrow{EntityNotFoundException("Test with id $id not found")}
         return testMapper.toTestDto(test)
     }
 
