@@ -19,7 +19,6 @@ class CoordinatorService {
         return coordinatorRepository.findById(id)
     }
 
-    // Guardar o actualizar un coordinador
     fun save(coordinator: Coordinator): Coordinator {
         return coordinatorRepository.save(coordinator)
     }
@@ -35,4 +34,15 @@ class CoordinatorService {
 
         return coordinatorRepository.save(existingCoordinator)
     }
+
+    fun create(coordinator: Coordinator): Coordinator {
+        return coordinatorRepository.save(coordinator)
+    }
+
+    fun delete(id: Long) {
+        val coordinator = coordinatorRepository.findById(id)
+            .orElseThrow { IllegalArgumentException("Coordinator with ID $id not found") }
+        coordinatorRepository.delete(coordinator)
+    }
+
 }

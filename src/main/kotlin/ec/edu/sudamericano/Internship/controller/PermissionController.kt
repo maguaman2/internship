@@ -20,33 +20,21 @@ class PermissionController {
     lateinit var permissionService: PermissionService
 
     @GetMapping()
-    fun getPermission(): ResponseEntity<Any> {
-        return try {
-            val permission = permissionService.getPermission()
-            ResponseEntity(SuccessResponse(data = permission), HttpStatus.OK)
-        } catch (e: Exception) {
-            ResponseEntity(ErrorResponse(message = "Error al obterner a los artistas", code = 500), HttpStatus.INTERNAL_SERVER_ERROR)
+    fun getPermission(): ResponseEntity<*> {
+            val response = permissionService.getPermission()
+             return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
         }
-    }
-
 
     @GetMapping("/{id}")
-    fun getPermissionById(@PathVariable id: Long): ResponseEntity<Any> {
-        return try {
-            val permission = permissionService.getPermissionById(id)
-            if (permission != null) {
-                ResponseEntity(SuccessResponse(data = permission), HttpStatus.OK)
-            } else {
-                ResponseEntity(ErrorResponse(message = "Cliente no encontrado", code = 404), HttpStatus.NOT_FOUND)
-            }
-        } catch (e: Exception) {
-            ResponseEntity(ErrorResponse(message = "Error al obtener el cliente", code = 500), HttpStatus.INTERNAL_SERVER_ERROR)
-        }
+    fun getPermissionById(@PathVariable id: Long): ResponseEntity<*> {
+        val response = permissionService.getPermissionById(id)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     @PostMapping
-    fun save (@RequestBody @Valid permissionDto: PermissionDto): Permission{
-        return permissionService.save(permissionDto)
+    fun save(@RequestBody @Valid permissionDto: PermissionDto): ResponseEntity<*> {
+        val response = permissionService.save(permissionDto)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.CREATED)
     }
 
 }

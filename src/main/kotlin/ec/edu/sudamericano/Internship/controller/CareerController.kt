@@ -1,47 +1,46 @@
 package ec.edu.sudamericano.Internship.controller
 
 import ec.edu.sudamericano.Internship.dto.CareerDTO
+import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.CareerService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/careers")
+@RequestMapping("/api/careers")
 class CareerController {
 
     @Autowired
     lateinit var careerService: CareerService
 
     @GetMapping
-    fun getAllCareers(): ResponseEntity<CareerResponse> {
-        val careerDTOs = careerService.findAll() // Devuelve una lista de CareerDTO
-        return ResponseEntity.ok(CareerResponse(true, "All careers retrieved successfully", careerDTOs))
+    fun getCareers(): ResponseEntity<*> {
+        val response = careerService.getCareers()
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     @PostMapping
-    fun createCareer(@RequestBody careerDTO: CareerDTO): ResponseEntity<CareerResponse> {
+    fun createCareer(@RequestBody careerDTO: CareerDTO): ResponseEntity<*> {
         val createdCareer = careerService.createCareer(careerDTO)
-        return ResponseEntity.ok(CareerResponse(true, "Career created successfully", listOf(createdCareer))) // Asegúrate de envolverlo en una lista
+        return ResponseEntity(SuccessResponse(data = createdCareer), HttpStatus.CREATED)
     }
 
     @GetMapping("/{id}")
-    fun getCareer(@PathVariable id: Long): ResponseEntity<CareerResponse> {
+    fun getCareer(@PathVariable id: Long): ResponseEntity<*> {
         val careerDTO = careerService.getCareer(id) // Devuelve un solo CareerDTO
-        return ResponseEntity.ok(CareerResponse(true, "Career retrieved successfully", listOf(careerDTO))) // Retorna como lista de un solo elemento
+        return ResponseEntity(SuccessResponse(data = careerDTO), HttpStatus.OK)
     }
 
     @PutMapping("/{id}")
-    fun updateCareer(@PathVariable id: Long, @RequestBody careerDTO: CareerDTO): ResponseEntity<CareerResponse> {
+    fun updateCareer(@PathVariable id: Long, @RequestBody careerDTO: CareerDTO): ResponseEntity<*> {
         val updatedCareer = careerService.updateCareer(id, careerDTO)
-        return ResponseEntity.ok(CareerResponse(true, "Career updated successfully", listOf(updatedCareer))) // Asegúrate de envolverlo en una lista
+        return ResponseEntity(SuccessResponse(data = updatedCareer), HttpStatus.OK)
     }
-
     @DeleteMapping("/{id}")
-    fun deleteCareer(@PathVariable id: Long): ResponseEntity<CareerResponse> {
-        // Llama al servicio para eliminar la carrera por su ID
-        careerService.deleteCareer(id)
-        // Devuelve una respuesta exitosa
-        return ResponseEntity.ok(CareerResponse(true, "Career deleted successfully", emptyList())) // Se envía una lista vacía como data
+    fun deleteCareer(@PathVariable id: Long): ResponseEntity<*> {
+    careerService.deleteCareer(id)
+        return ResponseEntity(SuccessResponse(data = null), HttpStatus.NO_CONTENT)
     }
 }

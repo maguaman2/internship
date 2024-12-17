@@ -28,7 +28,7 @@ class CompanyService {
 
     fun getCompanyById(id: Long): Company {
         return companyRepository.findById(id).orElseThrow {
-            RuntimeException("Company not found with id: $id")
+            throw RuntimeException("Company not found with id: $id")
         }
     }
 
