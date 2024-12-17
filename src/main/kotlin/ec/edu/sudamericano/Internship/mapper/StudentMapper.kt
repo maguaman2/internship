@@ -1,5 +1,5 @@
 package ec.edu.sudamericano.Internship.mapper
-package ec.edu.sudamericano.Internship.mapper
+
 
 import ec.edu.sudamericano.Internship.dto.StudentDto
 import ec.edu.sudamericano.Internship.entity.Student
