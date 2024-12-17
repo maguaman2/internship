@@ -24,6 +24,8 @@ class Parameters {
     @Column(name = "value", precision = 9, scale = 2)
     var value: Double? = null
 
+    var permissionId: Int? = null
+
   // @ManyToOne
    // @JoinColumn(name = "permission_id")
    // var permission: Permission? = null

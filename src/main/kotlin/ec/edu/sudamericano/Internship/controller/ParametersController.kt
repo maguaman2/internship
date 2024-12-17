@@ -1,11 +1,14 @@
 package ec.edu.sudamericano.Internship.controller
 
+import ec.edu.sudamericano.Internship.dto.ParametersDto
 import ec.edu.sudamericano.Internship.entity.Parameters
 import ec.edu.sudamericano.Internship.response.ErrorResponse
 import ec.edu.sudamericano.Internship.response.FailedResponse
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.ParametersService
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -17,50 +20,13 @@ class ParametersController @Autowired constructor(
 
     @GetMapping
     fun getAllParameters(): ResponseEntity<Any> {
-        return try {
-            val parameters = parametersService.findAll()
-            if (parameters.isNotEmpty()) {
-                ResponseEntity.ok(
-                    SuccessResponse(
-                        message = "Parámetros encontrados",
-                        data = parameters
-                    )
-                )
-            } else {
-                ResponseEntity.status(404).body(
-                    FailedResponse(
-                        message = "No se encontraron parámetros",
-                        reason = "La base de datos está vacía"
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            ResponseEntity.internalServerError().body(
-                ErrorResponse(
-                    message = "Error al obtener parámetros",
-                    errorDetails = e.message ?: "Error desconocido"
-                )
-            )
-        }
+        val response = parametersService.findAll()
+        return ResponseEntity(SuccessResponse(data=response), HttpStatus.OK)
     }
 
     @PostMapping
-    fun createParameter(@RequestBody parameter: Parameters): ResponseEntity<Any> {
-        return try {
-            val savedParameter = parametersService.save(parameter)
-            ResponseEntity.status(201).body(
-                SuccessResponse(
-                    message = "Parámetro creado con éxito",
-                    data = savedParameter
-                )
-            )
-        } catch (e: Exception) {
-            ResponseEntity.internalServerError().body(
-                ErrorResponse(
-                    message = "Error al crear el parámetro",
-                    errorDetails = e.message ?: "Error desconocido"
-                )
-            )
-        }
+    fun createParameter(@RequestBody @Valid parametersDto: ParametersDto): ResponseEntity<Any> {
+        val response = parametersService.save(parametersDto)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.CREATED)
     }
 }
