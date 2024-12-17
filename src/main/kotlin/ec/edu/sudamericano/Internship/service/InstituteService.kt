@@ -16,11 +16,11 @@ class InstituteService {
     private lateinit var instituteMapper: InstituteMapper
 
     @Autowired
-lateinit var instituteRepository: InstituteRepository
+    lateinit var instituteRepository: InstituteRepository
 
-fun getActivities(): MutableList<Institute?> {
+    fun getActivities(): MutableList<Institute?> {
     return instituteRepository.findAll()
-}
+    }
     fun save(instituteDto: InstituteDto): Institute {
         val institute = instituteMapper.toEntity(instituteDto)
         return instituteRepository.save(institute)
