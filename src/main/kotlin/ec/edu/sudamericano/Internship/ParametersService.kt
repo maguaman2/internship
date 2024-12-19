@@ -1,12 +1,15 @@
 package ec.edu.sudamericano.Internship.service
 
 import ec.edu.sudamericano.Internship.dto.ParametersDto
+import ec.edu.sudamericano.Internship.entity.ParameterView
 import ec.edu.sudamericano.Internship.entity.Parameters
 import ec.edu.sudamericano.Internship.mapper.ParametersMapper
+import ec.edu.sudamericano.Internship.repository.ParameterViewRepository
 import ec.edu.sudamericano.Internship.repository.ParametersRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.web.servlet.View
 import java.util.*
 
 @Service
@@ -20,6 +23,14 @@ class ParametersService {
     @Autowired
     lateinit var parametersMapper: ParametersMapper
 
+    @Autowired
+    lateinit var parameterViewRepository: ParameterViewRepository
+
+
+
+
+
+
     // Obtener todos los parámetros
     fun findAll(): List<Parameters> {
         return parametersRepository.findAll()
@@ -29,6 +40,9 @@ class ParametersService {
     fun findById(id: Long): Optional<Parameters> {
         return parametersRepository.findById(id)
     }
+    fun listView(): List<ParameterView> {
+        return parameterViewRepository.findAll()
+    }
 
     // Guardar o actualizar un parámetro
     fun save(parametersDto: ParametersDto): ParametersDto {
@@ -36,6 +50,7 @@ class ParametersService {
         val saveParameters = parametersRepository.save(parameter)
         return parametersMapper.toDto(saveParameters)
     }
+
 
     // Eliminar un parámetro por ID
     fun deleteById(id: Long) {

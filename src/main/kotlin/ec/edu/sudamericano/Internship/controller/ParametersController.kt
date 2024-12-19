@@ -1,9 +1,6 @@
 package ec.edu.sudamericano.Internship.controller
 
 import ec.edu.sudamericano.Internship.dto.ParametersDto
-import ec.edu.sudamericano.Internship.entity.Parameters
-import ec.edu.sudamericano.Internship.response.ErrorResponse
-import ec.edu.sudamericano.Internship.response.FailedResponse
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.ParametersService
 import jakarta.validation.Valid
@@ -14,16 +11,24 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/parameters")
-class ParametersController @Autowired constructor(
-    private val parametersService: ParametersService
-) {
+class ParametersController {
 
-    @GetMapping
+    @Autowired
+    lateinit var parametersService: ParametersService//
+    @GetMapping("/all")
     fun getAllParameters(): ResponseEntity<Any> {
         val response = parametersService.findAll()
-        return ResponseEntity(SuccessResponse(data=response), HttpStatus.OK)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
+    // Endpoint para vista lista de parámetros
+    @GetMapping("/list")
+    fun listView(): ResponseEntity<*> {
+        val response = parametersService.listView()
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
+    }
+
+    // Endpoint para crear un parámetro
     @PostMapping
     fun createParameter(@RequestBody @Valid parametersDto: ParametersDto): ResponseEntity<Any> {
         val response = parametersService.save(parametersDto)
