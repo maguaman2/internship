@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import ec.edu.sudamericano.internship.entity.CoordinatorCareerView
+
 
 data class SuccessResponse(val data: Any?)
 
@@ -15,6 +17,13 @@ class CoordinatorController {
 
     @Autowired
     lateinit var coordinatorService: CoordinatorService
+
+    // Endpoint para la vista
+    @GetMapping("/view")
+    fun listView(): ResponseEntity<List<CoordinatorCareerView>> {
+        val data = coordinatorService.listView()
+        return ResponseEntity(data, HttpStatus.OK)
+    }
 
     // Endpoint GET: Obtener todos los coordinadores
     @GetMapping

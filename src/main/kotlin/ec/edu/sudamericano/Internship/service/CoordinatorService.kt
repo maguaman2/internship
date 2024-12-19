@@ -4,12 +4,21 @@ import ec.edu.sudamericano.internship.entity.Coordinator
 import ec.edu.sudamericano.internship.repository.CoordinatorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import ec.edu.sudamericano.internship.entity.CoordinatorCareerView
+import ec.edu.sudamericano.internship.repository.CoordinatorCareerViewRepository
 
 @Service
 class CoordinatorService {
 
     @Autowired
     lateinit var coordinatorRepository: CoordinatorRepository
+
+    @Autowired
+    lateinit var coordinatorCareerViewRepository: CoordinatorCareerViewRepository
+
+    fun listView(): List<CoordinatorCareerView> {
+        return coordinatorCareerViewRepository.findAll()
+    }
 
     fun findAll(): List<Coordinator> {
         return coordinatorRepository.findAll()
