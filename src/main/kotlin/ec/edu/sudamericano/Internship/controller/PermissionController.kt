@@ -2,6 +2,7 @@ package ec.edu.sudamericano.Internship.controller
 
 import ec.edu.sudamericano.Internship.dto.PermissionDto
 import ec.edu.sudamericano.Internship.entity.Permission
+import ec.edu.sudamericano.Internship.entity.PermissionView
 import ec.edu.sudamericano.Internship.response.ErrorResponse
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.PermissionService
@@ -24,6 +25,10 @@ class PermissionController {
             val response = permissionService.getPermission()
              return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
         }
+    @GetMapping("/view")
+    fun listView():List<PermissionView>{
+        return permissionService.listView()
+    }
 
     @GetMapping("/{id}")
     fun getPermissionById(@PathVariable id: Long): ResponseEntity<*> {
