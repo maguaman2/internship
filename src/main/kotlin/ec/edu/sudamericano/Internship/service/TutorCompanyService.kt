@@ -3,9 +3,11 @@ package ec.edu.sudamericano.Internship.service
 
 import ec.edu.sudamericano.Internship.dto.TutorCompanyDto
 import ec.edu.sudamericano.Internship.entity.TutorCompanyEntity
+import ec.edu.sudamericano.Internship.entity.TutorCompanyView
 import ec.edu.sudamericano.Internship.mapper.TutorCompanyMapper
 
 import ec.edu.sudamericano.Internship.repository.TutorCompanyRepository
+import ec.edu.sudamericano.Internship.repository.TutorCompanyViewRepository
 
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,10 +15,16 @@ import org.springframework.stereotype.Service
 
 @Service
 class TutorCompanyService {
+    @Autowired
+    lateinit var tutorCompanyViewRepository: TutorCompanyViewRepository
+
 
         @Autowired
         lateinit var tutorCompanyRepository: TutorCompanyRepository
 
+        fun listView(): List<TutorCompanyView>{
+        return tutorCompanyViewRepository.findAll()
+        }
 
         fun findAll(): List<TutorCompanyDto> {
             val TutorCompanys = tutorCompanyRepository.findAll()
@@ -58,4 +66,5 @@ class TutorCompanyService {
                 .orElseThrow{ EntityNotFoundException("TutorCompany with id $id not found") }
             tutorCompanyRepository.delete(tutorCompany)
         }
+
     }

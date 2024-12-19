@@ -3,6 +3,7 @@ package ec.edu.sudamericano.Internship.controller
 
 
 import ec.edu.sudamericano.Internship.dto.TutorCompanyDto
+import ec.edu.sudamericano.Internship.entity.TutorCompanyView
 
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.TutorCompanyService
@@ -48,6 +49,10 @@ class TutorCompanyController {
             val response = tutorCompanyService.delete(id)
             return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
         }
+    @GetMapping("/tutor_company_view{id}")
+    fun listView(): List<TutorCompanyView>{
+        return tutorCompanyService.listView()
+    }
 }
 
 
