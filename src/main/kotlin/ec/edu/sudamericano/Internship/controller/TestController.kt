@@ -1,11 +1,8 @@
 package ec.edu.sudamericano.Internship.controller
 
 import ec.edu.sudamericano.Internship.dto.TestDto
-import ec.edu.sudamericano.Internship.response.ErrorResponse
-import ec.edu.sudamericano.Internship.response.FailedResponse
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.TestService
-import jakarta.persistence.EntityNotFoundException
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -38,11 +35,18 @@ class TestController {
         return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
         }
 
+    @GetMapping("/view-test")
+    fun listView(): ResponseEntity<*> {
+        val response = testService.listView()
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
+    }
+
     @PostMapping
     fun save(@RequestBody @Valid testDto: TestDto): ResponseEntity<Any> {
         val response = testService.save(testDto)
         return ResponseEntity(SuccessResponse(data = response), HttpStatus.CREATED)
     }
+
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody @Valid testDto: TestDto): ResponseEntity<Any> {
