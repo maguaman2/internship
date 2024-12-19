@@ -2,6 +2,7 @@ package ec.edu.sudamericano.Internship.controller
 
 import ec.edu.sudamericano.Internship.dto.ActivityDto
 import ec.edu.sudamericano.Internship.entity.Activity
+import ec.edu.sudamericano.Internship.entity.ActivityView
 import ec.edu.sudamericano.Internship.response.ErrorResponse
 import ec.edu.sudamericano.Internship.response.FailedResponse
 import ec.edu.sudamericano.Internship.response.SuccessResponse
@@ -39,7 +40,15 @@ class ActivityController {
         return ResponseEntity(SuccessResponse(data=response), HttpStatus.OK)
     }
 
+    @GetMapping("/view")
+    fun listActivityView(): List<ActivityView> {
+        return activityService.listActivityView()
+    }
 
+    @GetMapping("/search")
+    fun searchByDescription(@RequestParam description: String): List<ActivityView> {
+        return activityService.findByDescription(description)
+    }
 
 }
 
@@ -51,14 +60,5 @@ class ActivityController {
 
 
 
-/*
-    @GetMapping
-    fun getActivitiesByStudentAndDate(
-        @RequestParam studentId: Long,
-        @RequestParam createdAt: LocalDateTime
-    ): List<Activity>{
-        return activityService.getActivitiesByStudentAndDate(studentId, createdAt)
-    }
 
- */
 
