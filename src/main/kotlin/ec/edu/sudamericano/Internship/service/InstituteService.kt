@@ -18,9 +18,16 @@ class InstituteService {
     @Autowired
 lateinit var instituteRepository: InstituteRepository
 
+
+
 fun getActivities(): MutableList<Institute?> {
     return instituteRepository.findAll()
 }
+
+    fun listView(): List<listView>{
+        return instituteRepository.findAll()
+    }
+
     fun save(instituteDto: InstituteDto): Institute {
         val institute = instituteMapper.toEntity(instituteDto)
         return instituteRepository.save(institute)
