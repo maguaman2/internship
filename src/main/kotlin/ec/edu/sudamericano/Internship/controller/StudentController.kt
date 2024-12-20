@@ -30,11 +30,7 @@ class StudentController {
         return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
-    @PostMapping
-    fun save(@RequestBody @Valid studentDto: StudentDto): ResponseEntity<*> {
-        val response = studentService.save(studentDto)
-        return ResponseEntity(SuccessResponse(data = response), HttpStatus.CREATED)
-    }
+   
 
     @PutMapping("/{id}")
     fun updateStudent(@PathVariable id: Long, @RequestBody @Valid studentDto: StudentDto): ResponseEntity<*> {

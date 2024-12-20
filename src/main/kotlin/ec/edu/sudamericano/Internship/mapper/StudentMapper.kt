@@ -23,7 +23,7 @@ object StudentMapper {
     fun toStudentDto(student: Student) {
         val studentDto = StudentDto()
        studentDto.id = student.id
-        studentDto.fullName = student.fullName
+     //   studentDto.fullName = student.fullName
         studentDto.nui = student.nui
         studentDto.telephone = student.telephone
         studentDto.email = student.email

@@ -32,11 +32,7 @@ class TestController {
         return ResponseEntity(SuccessResponse(data=response), HttpStatus.OK)
         }
 
-    @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long): ResponseEntity<*> {
-        val response = testService.findById(id)
-        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
-        }
+
 
     @PostMapping
     fun save(@RequestBody @Valid testDto: TestDto): ResponseEntity<Any> {

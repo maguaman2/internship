@@ -22,11 +22,6 @@ class AcademicTutorService {
     fun findAll(): List<AcademicTutorEntity> {
         return academicTutorRepository.findAll()
     }
-    fun findById(id: Long): AcademicTutorEntity {
-        return academicTutorRepository.findAll(id)
-    }
-    fun save (academicTutor: AcademicTutorEntity{
-        return academicTutor.save(academicTutor)
-    }
+
 }
 

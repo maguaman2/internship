@@ -5,7 +5,7 @@ import ec.edu.sudamericano.Internship.response.ErrorResponse
 import ec.edu.sudamericano.Internship.response.FailedResponse
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.AcademicTutorService
-import ec.edu.sudamericano.Internship.service.activityService
+import ec.edu.sudamericano.Internship.service.ActivityService
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus

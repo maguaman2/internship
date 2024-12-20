@@ -3,6 +3,8 @@ package ec.edu.sudamericano.Internship.controller
 import ec.edu.sudamericano.Internship.dto.CareerDTO
 import ec.edu.sudamericano.Internship.response.SuccessResponse
 import ec.edu.sudamericano.Internship.service.CareerService
+import ec.edu.sudamericano.internship.entity.CareerView
+import ec.edu.sudamericano.internship.repository.CareerViewRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -43,4 +45,12 @@ class CareerController {
     careerService.deleteCareer(id)
         return ResponseEntity(SuccessResponse(data = null), HttpStatus.NO_CONTENT)
     }
+    class CareerViewController(private val careerViewRepository: CareerViewRepository) {
+
+        @GetMapping("/careers-view")
+        fun getCareerView(): List<CareerView> {
+            return careerViewRepository.findAll()
+        }
+    }
+
 }

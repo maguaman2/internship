@@ -21,10 +21,6 @@ class TestService {
     }
 
 
-    fun findById(id: Long): TestDto {
-        val test = testRepository.findById(id)
-        return testMapper.toTestDto(test)
-    }
 
 
     fun save(testDto: TestDto): TestDto {
