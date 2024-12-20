@@ -41,14 +41,17 @@ class ActivityController {
     }
 
     @GetMapping("/view")
-    fun listActivityView(): List<ActivityView> {
-        return activityService.listActivityView()
+    fun listView(): ResponseEntity<*> {
+        val response = activityService.listActivityView()
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     @GetMapping("/search")
-    fun searchByDescription(@RequestParam description: String): List<ActivityView> {
-        return activityService.findByDescription(description)
+    fun listView(@RequestParam description: String): ResponseEntity<*> {
+        val response = activityService.findByDescription(description)
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
+
 
 }
 
