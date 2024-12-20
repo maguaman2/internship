@@ -20,9 +20,9 @@ class CoordinatorController {
 
     // Endpoint para la vista
     @GetMapping("/view")
-    fun listView(): ResponseEntity<List<CoordinatorCareerView>> {
-        val data = coordinatorService.listView()
-        return ResponseEntity(data, HttpStatus.OK)
+    fun listView(): ResponseEntity<SuccessResponse> {
+        val response = coordinatorService.listView()
+        return ResponseEntity(SuccessResponse(data = response), HttpStatus.OK)
     }
 
     // Endpoint GET: Obtener todos los coordinadores
