@@ -1,12 +1,18 @@
-package ec.edu.sudamericano.Internship.mapper
-
 import ec.edu.sudamericano.Internship.dto.AcademicTutorDto
+import ec.edu.sudamericano.Internship.entity.AcademicTutorWithCareerEntity
 
 object AcademicTutorMapper {
 
-    fun  toEntity(academicTutorDto: AcademicTutorDto): AcademicTutor
-    val academicTutor = AcademicTutor ()
-    academictutor.fullName = academictutorDto.fullname
-    academictutor
+
+    fun toDto(entity: AcademicTutorWithCareerEntity): AcademicTutorDto {
+        return AcademicTutorDto(
+            id = entity.tutorId,
+            fullName = entity.tutorFullName,
+            phone = entity.tutorPhone,
+            email = entity.tutorEmail,
+            careerId = entity.careerId
+        )
+    }
+
 
 }

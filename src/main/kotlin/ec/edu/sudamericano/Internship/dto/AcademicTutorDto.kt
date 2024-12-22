@@ -1,9 +1,9 @@
 package ec.edu.sudamericano.Internship.dto
 
-import jakarta.validation.constraints.NotBlank
-import org.jetbrains.annotations.NotNull
-
-
-class AcademicTutorDto {
-
- }
+data class AcademicTutorDto(
+ val id: Long?,
+ val fullName: String?,
+ val phone: String?,
+ val email: String?,
+ val careerId: Int?
+)

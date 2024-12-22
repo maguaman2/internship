@@ -1,39 +1,30 @@
 package ec.edu.sudamericano.Internship.entity
 
-import jakarta.persistence.*
-
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 
 @Entity
-@Table(name = "academic_tutor")
-
-class AcademicTutorEntity {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+@Table(name = "academic_tutor_view")
+class AcademicTutorWithCareerEntity(
 
     @Id
-    @Column(updatable = false)
+    @Column(name = "tutor_id")
+    val tutorId: Long? = null,
 
-    val id: Long? = null
+    @Column(name = "tutor_full_name")
+    val tutorFullName: String? = null,
 
-    @Column(nullable = false, length = 100)
-    val fullName: String ?= null
+    @Column(name = "tutor_phone")
+    val tutorPhone: String? = null,
 
-    @Column(nullable = false, length = 20)
-    val phone: String ?= null
+    @Column(name = "tutor_email")
+    val tutorEmail: String? = null,
 
-    @Column(nullable = false, unique = true, length = 100)
-    val email: String ?= null
+    @Column(name = "career_id")
+    val careerId: Int? = null,
 
-    @Column(nullable = false)
-    val careerId: Int ?= null
-
-}
-
-/*
-    var id: Long? = null
-    var fullName: String? = null
-    var phone: String? = null
-    var email : String? = null
-    var career_id : Int? = null
-*/
+    @Column(name = "career_name")  // Nombre de la carrera
+    val careerName: String? = null
+)
