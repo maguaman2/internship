@@ -9,3 +9,4 @@ class InternshipApplication
 fun main(args: Array<String>) {
 	runApplication<InternshipApplication>(*args)
 }
+
