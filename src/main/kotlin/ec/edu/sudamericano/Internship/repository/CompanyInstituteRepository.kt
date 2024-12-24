@@ -1,11 +1,10 @@
 package ec.edu.sudamericano.Internship.repository
-
-
+import ec.edu.sudamericano.Internship.entity.CompanyInstituteEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 
 @Repository
-interface CompanyInstituteView : JpaRepository<CompanyInstituteViewEntity, Long> {
-    fun findById(id: Long?): CompanyInstituteViewEntity?
+interface CompanyInstituteRepository : JpaRepository<CompanyInstituteEntity, Long> {
+    fun findById(id: Long?): CompanyInstituteEntity?
 }

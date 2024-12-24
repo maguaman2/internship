@@ -1,5 +1,3 @@
-package ec.edu.sudamericano.Internship.dto
-
 class CompanyInstituteDTO {
     private val companyId: Long? = null
     private val companyName: String? = null
@@ -8,5 +6,5 @@ class CompanyInstituteDTO {
     private val instituteId: Long? = null
     private val instituteName: String? = null
     private val instituteAddress: String? = null
-    private val instituteTelephone: String? = null // Getters y setters
+    private val instituteTelephone: String? = null
 }
