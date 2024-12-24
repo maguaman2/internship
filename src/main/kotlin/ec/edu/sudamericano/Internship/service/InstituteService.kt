@@ -1,31 +1,32 @@
 package ec.edu.sudamericano.Internship.service
 
-import ec.edu.sudamericano.Internship.dto.InstituteDto
-import ec.edu.sudamericano.Internship.entity.Activity
+import ec.edu.sudamericano.Internship.entity.InstituteEngagementView
+import ec.edu.sudamericano.Internship.repository.InstituteViewRepository
++import ec.edu.sudamericano.Internship.dto.InstituteDto
 import ec.edu.sudamericano.Internship.entity.Institute
 import ec.edu.sudamericano.Internship.mapper.InstituteMapper
-import ec.edu.sudamericano.Internship.repository.ActivityRepository
 import ec.edu.sudamericano.Internship.repository.InstituteRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.Optional
+
 @Service
 class InstituteService {
 
     @Autowired
-    private lateinit var instituteMapper: InstituteMapper
+    lateinit var instituteMapper: InstituteMapper
 
     @Autowired
-lateinit var instituteRepository: InstituteRepository
+    lateinit var instituteRepository: InstituteRepository
 
-
-
-fun getActivities(): MutableList<Institute?> {
-    return instituteRepository.findAll()
-}
-
-    fun listView(): List<listView>{
+    @Autowired
+    lateinit var instituteViewRepository: InstituteViewRepository
+    fun getActivities(): MutableList<Institute?> {
         return instituteRepository.findAll()
+    }
+
+
+    fun listView(): List<InstituteEngagementView> {
+        return instituteViewRepository.findAll()
     }
 
     fun save(instituteDto: InstituteDto): Institute {
@@ -33,3 +34,4 @@ fun getActivities(): MutableList<Institute?> {
         return instituteRepository.save(institute)
     }
 }
+

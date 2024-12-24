@@ -1,7 +1,9 @@
-package ec.edu.sudamericano.Internship.repository
+package  ec.edu.sudamericano.Internship.repository
 
-import ec.edu.sudamericano.Internship.entity.Institute
+import ec.edu.sudamericano.Internship.entity.InstituteEngagementView
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
-
-interface InstituteViewRepository : JpaRepository<Institute, Long>
+@Repository
+interface InstituteViewRepository : JpaRepository<InstituteEngagementView, Int> {
+}

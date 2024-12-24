@@ -1,4 +1,11 @@
-CREATE VIEW institute_view AS
-SELECT i.*,c.full_name
-FROM institute i JOIN institute c
-                    ON i.isntitute_id = c.id;
+
+
+CREATE OR REPLACE VIEW institute_engagement_view AS
+SELECT
+    i.full_name AS institute_name,
+    ec.email AS coordinator_email,
+    ec.telephone AS coordinator_telephone
+FROM
+    institute i
+        LEFT JOIN engagement_coordinator ec
+                  ON i.id = ec.institute_id;
